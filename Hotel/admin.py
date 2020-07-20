@@ -9,7 +9,7 @@ class CategoryAdmin(admin.ModelAdmin):
     list_filter = ['status']
 
 class HotelAdmin(admin.ModelAdmin):
-    list_display = ['title','category','status','bosoda']
+    list_display = ['hotel_adi','category','gunluk_fiyat','oda_sayisi','bulundugu_il','bulundugu_ilce','status']
     list_filter = ['category']
 
 admin.site.register(Category,CategoryAdmin)
