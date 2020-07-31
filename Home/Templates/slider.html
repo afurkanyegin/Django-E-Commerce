@@ -1,0 +1,48 @@
+{% load static %}
+<section id="slider"><!--slider-->
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<div id="slider-carousel" class="carousel slide" data-ride="carousel">
+						<div class="carousel-inner">
+
+							<div class="item active">
+								<div class="col-sm-6">
+									<h2>Sitemize Hoş Geldiniz</h2>
+									<p>Size en uygun konaklama fırsatlarına ulaşın </p>
+									<button type="button" class="btn btn-default get">Otellere Gözat</button>
+								</div>
+								<div class="col-sm-6">
+									<img src="{% static 'images/home/tsr0.jpg' %}" class="girl img-responsive"  alt="" style="height:400px" />
+								</div>
+							</div>
+
+                            {% for rs in sliderdata %}
+							<div class="item">
+								<div class="col-sm-6">
+									<h1><span>E</span>-SHOPPER</h1>
+									<h2>{{ rs.title }}</h2>
+									<p>{{ rs.description}} </p>
+									<a  href="/Hotel/{{rs.slug}}" class="btn btn-default get">Otel Sayfasına Git</a>
+								</div>
+								<div class="col-sm-6">
+									<img src="{{ rs.image.url }}"  alt="" style="height:400px"/>
+								</div>
+							</div>
+                            {% endfor %}
+
+
+
+						</div>
+
+						<a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
+							<i class="fa fa-angle-left"></i>
+						</a>
+						<a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
+							<i class="fa fa-angle-right"></i>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section><!--/slider-->
