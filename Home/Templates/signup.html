@@ -1,6 +1,6 @@
 {% extends "homebase.html" %}
 
-{% block title %} LOGIN {% endblock %}
+{% block title %} SIGNUP {% endblock %}
 
 {% block sidebar %}{% endblock %}
 
@@ -8,12 +8,12 @@
 {% block content %}
 
 <body>
-	<section id="form"><!--form-->
+<section id="form"><!--form-->
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-6 col-sm-offset-3">
-					<div class="login-form"><!--login form-->
-						<h2>Login to your account</h2>
+					<div class="signup-form"><!--sign up form-->
+						<h2>New User Signup!</h2>
 						{% if messages %}
 							{% for message in messages %}
 								<div class="alert alert-{{message.tags}}" role="alert">
@@ -21,18 +21,24 @@
 								</div>
 							{% endfor %}
 						{% endif %}
-						<form action="" method="post">
+						<form method="post">
 							{% csrf_token %}
-							{{ form.as_p }}
-							<input type="text" placeholder="Username" name="username"/>
-							<input type="password" placeholder="Password" name="password"/>
-							<span>
-								<input type="checkbox" class="checkbox">
-								Keep me signed in
-							</span>
-							<button type="submit" value="Login" class="btn btn-default">Login</button>
+							{% for field in form %}
+								<p>
+									{{field.label_tag }}<br>
+									{{field}}
+									{% if field.help_text%}
+										<small style="color: grey">{{field.help_text }}</small>
+									{%endif%}
+									{% for error in field.errors %}
+										<p style="color:red">{{error}}</p>
+									{% endfor %}
+								</p>
+							{% endfor %}
+							<button type="submit">Sign Up</button>
+
 						</form>
-					</div><!--/login form-->
+					</div><!--/sign up form-->
 				</div>
 			</div>
 		</div>
