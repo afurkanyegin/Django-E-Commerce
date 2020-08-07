@@ -62,7 +62,7 @@ class Hotel(models.Model):
     image_tag.short_description = 'Image'
 
     def get_absolute_url(self):
-        return reverse('category_detail', kwargs={'slug': self.slug})
+        return reverse('hotel_detail', kwargs={'slug':  self.slug})
 
 class Images(models.Model):
     hotel=models.ForeignKey(Hotel,on_delete=models.CASCADE)

@@ -5,35 +5,18 @@
 				<div class="col-sm-3">
 					<div class="left-sidebar">
 						<h2>Category</h2>
-						<div class="panel-group category-products" id="accordian"><!--category-productsr-->
-							{% load mptt_tags %}
-							<div class="panel panel-default">
-									{% recursetree category %}
-										<div class="panel-heading">
-											<h4 class="panel-title">
-												<a data-toggle="collapse" data-parent="#accordian" href="#{{ node.slug }}">
-													{% if not node.is_leaf_node %}<span class="badge pull-right"><i class="fa fa-plus"></i></span>{% endif %}
-													{{ node.title }}
-												</a>
-												{% if not node.is_leaf_node %}
-													<div id="{{ node.slug }}" class="panel-collapse collapse">
-														<div class="panel-body">
-															<ul class="children">
-																<li><a href="#">{{ children }}</a></li>
-															</ul>
-														</div>
-													</div>
-												{% endif %}
-											</h4>
+						<div class="panel-group category-products" ><!--category-productsr-->
 
-										</div>
-									{% endrecursetree %}
-							</div>
+							{% load mptt_tags %}
+							{% recursetree category %}
 							<div class="panel panel-default">
+
 								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Bags</a></h4>
+									<h4 class="panel-title"><a href="/category/{{ node.id }}/{{ node.slug }}">{{ node.title }}</a></h4>
 								</div>
+
 							</div>
+							{% endrecursetree %}
 
 							</div><!--/category-products-->
 

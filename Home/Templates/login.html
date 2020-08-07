@@ -1,0 +1,51 @@
+{% extends "homebase.html" %}
+
+{% block title %} LOGIN {% endblock %}
+
+{% block sidebar %}{% endblock %}
+
+{% block body %}{% endblock %}
+{% block content %}
+
+<body>
+	<section id="form"><!--form-->
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-4 col-sm-offset-1">
+					<div class="login-form"><!--login form-->
+						<h2>Login to your account</h2>
+						{% if messages %}
+							{% for message in messages %}
+								<div class="alert alert-{{message.tags}}" role="alert">
+									{{message}}
+								</div>
+							{% endfor %}
+						{% endif %}
+						<form action="" method="post">
+							{% csrf_token %}
+							{{ form.as_p }}
+							<input type="text" placeholder="Username" name="username"/>
+							<input type="password" placeholder="Password" name="password"/>
+							<span>
+								<input type="checkbox" class="checkbox">
+								Keep me signed in
+							</span>
+							<button type="submit" value="Login" class="btn btn-default">Login</button>
+						</form>
+					</div><!--/login form-->
+				</div>
+			</div>
+		</div>
+	</section><!--/form-->
+
+
+
+    <script src="js/jquery.js"></script>
+	<script src="js/price-range.js"></script>
+    <script src="js/jquery.scrollUp.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.prettyPhoto.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+{% endblock %}
