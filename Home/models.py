@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.db import models
 
 # Create your models here.
-from django.forms import ModelForm
+from django.forms import ModelForm, TextInput
 from django.utils.safestring import mark_safe
 
 
@@ -55,7 +55,7 @@ class UserProfile(models.Model):
 class UserProfileForm(ModelForm):
     class Meta:
         model = UserProfile
-        fields = ['phone','address','city','country','image']
+        fields = ['phone','address','city','country','image',]
 
 
 class ContactFormMessage(models.Model):
@@ -80,6 +80,9 @@ class ContactFormu(ModelForm):
     class Meta:
         model = ContactFormMessage
         fields =['name', 'email','subject','message']
-        #widgets = {
-            #'name': TextInput(attrs={'class':'input','placeholder':'Name & Surname'}),
-        #}
+        widgets = {
+            'name':    TextInput(attrs={'class':'input','placeholder':'Name & Surname'}),
+            'subject': TextInput(attrs={'class':'input','placeholder':'Subject'}),
+            'email':   TextInput(attrs={'class':'input','placeholder':'Email Address'}),
+            'message': TextInput(attrs={'class':'input','placeholder':'Your Message','rows':'5'}),
+        }

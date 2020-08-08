@@ -75,4 +75,22 @@ class Images(models.Model):
         return self.title
 
 
+class Comment(models.Model):
+    STATUS=(('New','Yeni'),('True','Evet'),('False','Hayır'),)
+    hotel=models.ForeignKey(Hotel,on_delete=models.CASCADE)
+    user =models.ForeignKey(User,on_delete=models.CASCADE)
+    subject = models.CharField(max_length=50,blank=True)
+    comment = models.TextField(max_length=250,blank=True)
+    rate= models.IntegerField(blank=True)
+    status =models.CharField(max_length=10,choices=STATUS,default='New')
+    ip = models.CharField(blank=True,max_length=20)
+    create_at = models.DateTimeField(auto_now_add=True)
+    update_at = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return self.title
+
+class CommentForm(ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['subject','comment','rate']

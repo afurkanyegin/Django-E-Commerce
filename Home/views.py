@@ -6,7 +6,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 # Create your views here.
 from Home.forms import SignUpForm
 from Home.models import Setting
-from Hotel.models import Hotel, Category, Images
+from Hotel.models import Hotel, Category, Images, Comment
 
 
 def index(request):
@@ -29,9 +29,11 @@ def hotel_detail(request, id, slug):
     category = Category.objects.all()
     hotel = Hotel.objects.get(pk=id)
     images=Images.objects.filter(hotel_id=id)
+    comments=Comment.objects.filter(product_id=id,status='True')
     context = {'hotel':hotel,
                'category':category,
                'images':images,
+               'comments':comments,
                }
     return render(request,'hotel_detail.html',context)
 

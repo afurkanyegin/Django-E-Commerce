@@ -1,0 +1,60 @@
+{% extends "homebase.html" %}
+
+{% block title %} {{ profile.user_name }} Profile{% endblock %}
+{% block keywords %} {{ hotel.keywords }}{% endblock %}
+{% block description %} {{ hotel.description }} {% endblock %}
+
+{% block sidebar %}{% endblock %}
+
+{% block body %}{% endblock %}
+{% block content %}
+
+<body>
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-3">
+					{% include "user_panel.html" %}
+				</div>
+				<div class="col-sm-9">
+					<h2>USER INFORMATION</h2>
+					<table class="table table-condensed">
+						<thead>
+						<tr class="cart_menu">
+							<td class="image"></td>
+							<td class="text-center">Name Surname</td>
+							<td class="description">Email</td>
+							<td class="price">Phone</td>
+							<td class="quantity">Address</td>
+							<td class="total">City</td>
+							<td class="total">Country</td>
+						</tr>
+						</thead>
+						<tbody>
+						<tr>
+							<td class="thumb"><img src="{{ profile.image.url }}" alt=""></td>
+							<td class="text-center">{{ profile.user_name }}</td>
+							<td class="text-center">{{ profile.user.email }}</td>
+							<td class="text-center">{{ profile.phone }}</td>
+							<td class="text-center">{{ profile.address}}</td>
+							<td class="text-center">{{ profile.city }}</td>
+							<td class="text-center">{{ profile.country }}</td>
+						</tr>
+						</tbody>
+					</table>
+
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+    <script src="js/jquery.js"></script>
+	<script src="js/price-range.js"></script>
+    <script src="js/jquery.scrollUp.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.prettyPhoto.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+{% endblock %}

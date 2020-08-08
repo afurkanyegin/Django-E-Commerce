@@ -23,9 +23,11 @@ from Home import views
 urlpatterns = [
     path('', include('Home.urls')),
     path('hotel/', include('Hotel.urls')),
+    path('user/', include('user.urls')),
     path('home/', include('Home.urls')),
     path('admin/', admin.site.urls),
     path('ckeditor/', include('ckeditor_uploader.urls')),
+
     path('category/<int:id>/<slug:slug>/', views.category_detail, name='category_detail'),
     path('Hotel/<int:id>/<slug:slug>/', views.hotel_detail, name='hotel_detail'),
     path('logout/', views.logout_view, name='logout_view'),
