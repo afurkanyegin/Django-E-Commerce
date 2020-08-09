@@ -1,6 +1,6 @@
 {% extends "homebase.html" %}
 
-{% block title %} {{ profile.user_name }} Profile{% endblock %}
+{% block title %} {{ user.userprofile.user_name }} Profile{% endblock %}
 {% block keywords %} {{ hotel.keywords }}{% endblock %}
 {% block description %} {{ hotel.description }} {% endblock %}
 
@@ -16,29 +16,59 @@
 				<div class="col-sm-3">
 					{% include "user_panel.html" %}
 				</div>
-				<div class="col-sm-9">
-					<h2>USER INFORMATION</h2>
+				<div class="col-sm-8">
+					<h2 class="title text-center">USER INFORMATION</h2>
 					<table class="table table-condensed">
 						<thead>
 						<tr class="cart_menu">
-							<td class="image"></td>
-							<td class="text-center">Name Surname</td>
-							<td class="description">Email</td>
-							<td class="price">Phone</td>
-							<td class="quantity">Address</td>
-							<td class="total">City</td>
-							<td class="total">Country</td>
+
+							<th class="text-left" style="padding:20px">
+								<h5> .</h5>
+								<h4>.</h4>
+								<h6>-----------------------</h6>
+								<a href="/user/update" class="primary-btn">Update Profile</a>
+								<h6>-----------------------</h6>
+								<h6>-----------------------------</h6>
+								<a href="/user/password" class="primary-btn">Change Password</a>
+								<h6>-----------------------------</h6>
+								<h4>.</h4>
+								<h5> .</h5>
+
+							</th>
+
+							<td><img src="{{user.userprofile.image.url}}" style="height:300px;width:250px;padding-bottom:16px;border-radius:45px" alt=""></td>
+						</tr>
+						<tr>
+							<th class="text-left" style="padding:9px">Name Surname</th>
+							<td class="text-left"style="padding:9px">{{ user.userprofile.user_name }}</td>
+						</tr>
+						<tr>
+							<th class="text-left"style="padding:9px">Email</th>
+							<td class="text-left"style="padding:9px">{{ user.userprofile.user.email }}</td>
+						</tr>
+						<tr>
+							<th class="text-left"style="padding:9px">Phone</th>
+							<td class="text-left"style="padding:9px">{{ user.userprofile.phone }}</td>
+						</tr>
+						<tr>
+							<th class="text-left"style="padding:9px">Address</th>
+							<td class="text-left"style="padding:9px">{{ user.userprofile.address}}</td>
+						</tr>
+						<tr>
+							<th class="text-left"style="padding:9px">City</th>
+							<td class="text-left"style="padding:9px">{{ user.userprofile.city }}</td>
+						</tr>
+						<tr>
+							<th class="text-left"style="padding:9px">Country</th>
+							<td class="text-left"style="padding:9px">{{ user.userprofile.country }}</td>
 						</tr>
 						</thead>
 						<tbody>
 						<tr>
-							<td class="thumb"><img src="{{ profile.image.url }}" alt=""></td>
-							<td class="text-center">{{ profile.user_name }}</td>
-							<td class="text-center">{{ profile.user.email }}</td>
-							<td class="text-center">{{ profile.phone }}</td>
-							<td class="text-center">{{ profile.address}}</td>
-							<td class="text-center">{{ profile.city }}</td>
-							<td class="text-center">{{ profile.country }}</td>
+
+
+
+
 						</tr>
 						</tbody>
 					</table>

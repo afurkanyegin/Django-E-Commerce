@@ -1,12 +1,16 @@
 from django.contrib import messages
 from django.contrib.auth import logout, authenticate, login
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 
 # Create your views here.
+from django.utils.crypto import get_random_string
+
 from Home.forms import SignUpForm
-from Home.models import Setting
+from Home.models import Setting, UserProfile
 from Hotel.models import Hotel, Category, Images, Comment
+from reservation.models import ReservationForm, Reservation
 
 
 def index(request):
@@ -29,7 +33,7 @@ def hotel_detail(request, id, slug):
     category = Category.objects.all()
     hotel = Hotel.objects.get(pk=id)
     images=Images.objects.filter(hotel_id=id)
-    comments=Comment.objects.filter(product_id=id,status='True')
+    comments=Comment.objects.filter(hotel_id=id,status='True')
     context = {'hotel':hotel,
                'category':category,
                'images':images,
@@ -76,6 +80,12 @@ def signup_view(request):
             password = form.cleaned_data.get('password1')
             user = authenticate(request, username=username, password=password)
             login(request,user)
+
+            current_user = request.user
+            data=UserProfile()
+            data.user_id=current_user.id
+            data.image="images/users/user.png"
+            data.save()
             return HttpResponseRedirect('/')
 
     form = SignUpForm()
@@ -84,3 +94,56 @@ def signup_view(request):
                'form':form,
                }
     return render(request,'signup.html',context)
+
+@login_required(login_url='/login')
+def ReservationHotel(request,id,slug):
+    category=Category.objects.all()
+    hotel=Hotel.objects.get(pk=id)
+    current_user = request.user
+    total=0
+    gunsayisi=2
+    total += hotel.gunluk_fiyat * gunsayisi
+    if request.method =='POST':
+        form = ReservationForm(request.POST)
+        if form.is_valid():
+            data = Reservation()
+            data.first_name = form.cleaned_data['first_name']
+            data.last_name = form.cleaned_data['last_name']
+            data.address = form.cleaned_data['address']
+            data.city = form.cleaned_data['city']
+            data.phone = form.cleaned_data['phone']
+            data.user_id = form.cleaned_data['user_id']
+            data.total = total
+            data.ip = request.META.get('REMOTE_ADDR')
+            reservationcode = get_random_string(5).upper()
+            data.code= reservationcode
+            data.save()
+
+            detail = ReservationHotel()
+            detail.order_id = data.id
+            detail.hotel_id = hotel.id
+            detail.user_id = current_user.id
+            detail.quantity = gunsayisi
+            detail.price =hotel.gunluk_fiyat
+            detail.amount=hotel.oda_sayisi
+            detail.save()
+
+            hotel.oda_sayisi -= 1
+            hotel.save()
+
+            messages.success(request, "Your reservation has been completed. Thank you")
+            return render(request,'Reservation_Completed.html',{'reservationcode':reservationcode,'category':category})
+        else:
+            messages.warning(request,form.errors)
+            return HttpResponseRedirect("/order/reservationhotel")
+
+    form=ReservationForm()
+    profile =UserProfile.objects.get(user_id=current_user.id)
+    context = {'category':category,
+               'total':total,
+               'gunsayisi':gunsayisi,
+               'form':form,
+               'profile':profile,
+               'hotel':hotel,
+               }
+    return render(request,'Reservation_Form.html',context)
