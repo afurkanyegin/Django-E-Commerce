@@ -119,7 +119,7 @@ def ReservationHotel(request,id,slug):
             data.code= reservationcode
             data.save()
 
-            detail = ReservationHotel()
+            detail = ReservationHotel(request,id,slug)
             detail.reservation_id = data.id
             detail.hotel_id = hotel.id
 
