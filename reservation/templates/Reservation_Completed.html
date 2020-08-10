@@ -5,6 +5,13 @@
     <title>Complete</title>
 </head>
 <body>
-copmlte
+aaa
+    {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{message.tags}}" role="alert">
+            {{message}}
+        </div>
+        {% endfor %}
+    {% endif %}
 </body>
 </html>

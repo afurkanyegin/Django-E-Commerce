@@ -112,7 +112,7 @@ def ReservationHotel(request,id,slug):
             data.address = form.cleaned_data['address']
             data.city = form.cleaned_data['city']
             data.phone = form.cleaned_data['phone']
-            data.user_id = form.cleaned_data['user_id']
+
             data.total = total
             data.ip = request.META.get('REMOTE_ADDR')
             reservationcode = get_random_string(5).upper()
@@ -120,9 +120,9 @@ def ReservationHotel(request,id,slug):
             data.save()
 
             detail = ReservationHotel()
-            detail.order_id = data.id
+            detail.reservation_id = data.id
             detail.hotel_id = hotel.id
-            detail.user_id = current_user.id
+
             detail.quantity = gunsayisi
             detail.price =hotel.gunluk_fiyat
             detail.amount=hotel.oda_sayisi
@@ -135,7 +135,7 @@ def ReservationHotel(request,id,slug):
             return render(request,'Reservation_Completed.html',{'reservationcode':reservationcode,'category':category})
         else:
             messages.warning(request,form.errors)
-            return HttpResponseRedirect("/order/reservationhotel")
+            return HttpResponseRedirect("")
 
     form=ReservationForm()
     profile =UserProfile.objects.get(user_id=current_user.id)

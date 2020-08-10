@@ -5,6 +5,8 @@ from django.db import models
 from django.forms import ModelForm, TextInput
 from django.utils.safestring import mark_safe
 
+from Hotel.models import Hotel
+
 
 class Setting(models.Model):
     STATUS=(('True','Evet'),('False','Hayır'),)
@@ -47,6 +49,9 @@ class UserProfile(models.Model):
     def user_name(self):
         return  self.user.first_name + ' ' + self.user.last_name + ' ' + '[' + self.user.username + '] '
 
+    def user_id(self):
+        return self.user_id
+
     def image_tag(self):
         return mark_safe('<img src="{}" height="50"/>'.format(self.image.url))
     image_tag.short_description = 'Image'
@@ -86,3 +91,4 @@ class ContactFormu(ModelForm):
             'email':   TextInput(attrs={'class':'input','placeholder':'Email Address'}),
             'message': TextInput(attrs={'class':'input','placeholder':'Your Message','rows':'5'}),
         }
+
