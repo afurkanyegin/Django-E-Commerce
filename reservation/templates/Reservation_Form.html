@@ -20,7 +20,7 @@
 			</div><!--/breadcrums-->
 
 			<div class="step-one">
-				<h2 class="heading">RESERVATION FORM - {{ user.userprofile.user_name }} </h2>
+				<h2 class="heading">RESERVATION FORM - {{ user.userprofile.user_name }} - {{hotel.title}} </h2>
 			</div>
 
 				<div class="shopper-informations">
@@ -39,6 +39,8 @@
 										{% csrf_token %}
 										<p>User Information</p>
 
+										<h6>Hotel :</h6>
+										<input type="text" name="hotel" class="input" value="{{hotel.title}}" readonly>
 										<h6>Name :</h6>
 										<input type="text" name="first_name" class="input" value="{{user.first_name}}">
 										<h6>Surname :</h6>

@@ -10,7 +10,7 @@ from django.utils.crypto import get_random_string
 from Home.forms import SignUpForm
 from Home.models import Setting, UserProfile
 from Hotel.models import Hotel, Category, Images, Comment
-from reservation.models import ReservationForm, Reservation
+from reservation.models import ReservationForm, Reservation, ReservationHotel
 
 
 def index(request):
@@ -96,11 +96,12 @@ def signup_view(request):
     return render(request,'signup.html',context)
 
 @login_required(login_url='/login')
-def ReservationHotel(request,id,slug):
+def reservationhotel(request,id,slug):
     category=Category.objects.all()
     hotel=Hotel.objects.get(pk=id)
     current_user = request.user
     total=0
+    sayac=0
     gunsayisi=2
     total += hotel.gunluk_fiyat * gunsayisi
     if request.method =='POST':
@@ -112,30 +113,35 @@ def ReservationHotel(request,id,slug):
             data.address = form.cleaned_data['address']
             data.city = form.cleaned_data['city']
             data.phone = form.cleaned_data['phone']
-
+            data.country = form.cleaned_data['country']
+            data.hotel = form.cleaned_data['hotel']
+            data.startdate = form.cleaned_data['startdate']
+            data.finishdate = form.cleaned_data['finishdate']
             data.total = total
             data.ip = request.META.get('REMOTE_ADDR')
             reservationcode = get_random_string(5).upper()
             data.code= reservationcode
             data.save()
-
-            detail = ReservationHotel(request,id,slug)
-            detail.reservation_id = data.id
-            detail.hotel_id = hotel.id
+            while (sayac==0):
+                detail = ReservationHotel()
+                detail.reservation_id = data.id
+                detail.hotel_id = hotel.id
+                detail.user_id=current_user.id
+                sayac+=1
 
             detail.quantity = gunsayisi
             detail.price =hotel.gunluk_fiyat
             detail.amount=hotel.oda_sayisi
             detail.save()
 
-            hotel.oda_sayisi -= 1
-            hotel.save()
+            #hotel.oda_sayisi -= 1
+            #hotel.save()
 
             messages.success(request, "Your reservation has been completed. Thank you")
             return render(request,'Reservation_Completed.html',{'reservationcode':reservationcode,'category':category})
         else:
             messages.warning(request,form.errors)
-            return HttpResponseRedirect("")
+            return HttpResponseRedirect("/")
 
     form=ReservationForm()
     profile =UserProfile.objects.get(user_id=current_user.id)
