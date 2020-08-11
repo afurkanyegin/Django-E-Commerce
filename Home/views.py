@@ -138,7 +138,7 @@ def reservationhotel(request,id,slug):
             #hotel.save()
 
             messages.success(request, "Your reservation has been completed. Thank you")
-            return render(request,'Reservation_Completed.html',{'reservationcode':reservationcode,'category':category})
+            return render(request,'Reservation_Completed.html',{'reservationcode':reservationcode,'category':category,'hotel':hotel})
         else:
             messages.warning(request,form.errors)
             return HttpResponseRedirect("/")

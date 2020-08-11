@@ -18,21 +18,23 @@
 				</div>
 				<div class="col-sm-8">
 					<h2 class="title text-center">USER INFORMATION</h2>
+					{% if messages %}
+						{% for message in messages %}
+							<div class="alert alert-{{message.tags}}" role="alert">
+								{{message}}
+							</div>
+						{% endfor %}
+					{% endif %}
 					<table class="table table-condensed">
 						<thead>
 						<tr class="cart_menu">
 
 							<th class="text-left" style="padding:20px">
-								<h5> .</h5>
-								<h4>.</h4>
-								<h6>-----------------------</h6>
-								<a href="/user/update" class="primary-btn">Update Profile</a>
-								<h6>-----------------------</h6>
-								<h6>-----------------------------</h6>
-								<a href="/user/password" class="primary-btn">Change Password</a>
-								<h6>-----------------------------</h6>
-								<h4>.</h4>
-								<h5> .</h5>
+
+								<a href="/user/update" class="btn btn-primary">Update Profile</a>
+
+								<a href="/user/password" class="btn btn-primary">Change Password</a>
+								<h6>&nbsp;</h6>
 
 							</th>
 
@@ -64,12 +66,7 @@
 						</tr>
 						</thead>
 						<tbody>
-						<tr>
 
-
-
-
-						</tr>
 						</tbody>
 					</table>
 

@@ -1,17 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Complete</title>
-</head>
+{% extends "homebase.html" %}
+
+{% block title %} Reservation Completed{% endblock %}
+{% block keywords %} {{ hotel.keywords }}{% endblock %}
+{% block description %} {{ hotel.description }} {% endblock %}
+
+{% block sidebar %}{% endblock %}
+
+{% block body %}{% endblock %}
+{% block content %}
+
 <body>
-aaa
-    {% if messages %}
-        {% for message in messages %}
-        <div class="alert alert-{{message.tags}}" role="alert">
-            {{message}}
-        </div>
-        {% endfor %}
-    {% endif %}
+    <section id="cart_items">
+		<div class="container">
+			<div class="breadcrumbs">
+				<ol class="breadcrumb">
+				  <li><a href="#">Home</a></li>
+				  <li class="active">Reservation Form</li>
+				</ol>
+			</div><!--/breadcrums-->
+
+			<div class="step-one">
+				<h2 class="heading">RESERVATION COMPLETED </h2>
+			</div>
+
+				<div class="shopper-informations">
+
+					<div class="row">
+							{% if messages %}
+							{% for message in messages %}
+								<div class="alert alert-{{message.tags}}" role="alert">
+									{{message}}
+								</div>
+							{% endfor %}
+							{% endif %}
+
+                        <h4> {{ user.userprofile.user_name }}, your reservation for {{ hotel.title }} has been completed.</h4>
+                        <h4> Your reservation code is : {{reservationcode}}</h4>
+                        <h4> Have a great holiday!</h4>
+					</div>
+				</div>
+
+		</div>
+	</section> <!--/#cart_items-->
+
 </body>
-</html>
+
+{% endblock %}

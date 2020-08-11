@@ -1,0 +1,117 @@
+{% extends "homebase.html" %}
+
+{% block title %}  Reservation Detail {% endblock %}
+{% block keywords %} {{ hotel.keywords }}{% endblock %}
+{% block description %} {{ hotel.description }} {% endblock %}
+
+{% block sidebar %}{% endblock %}
+
+{% block body %}{% endblock %}
+{% block content %}
+
+<body>
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-3">
+					{% include "user_panel.html" %}
+				</div>
+				<div class="col-sm-8">
+					<h2 class="title text-center">RESERVATION DETAILS</h2>
+					{% if messages %}
+						{% for message in messages %}
+							<div class="alert alert-{{message.tags}}" role="alert">
+								{{message}}
+							</div>
+						{% endfor %}
+					{% endif %}
+					<table class="table table-condensed">
+						<thead>
+
+						<tr>
+							<th class="text-left" style="padding:9px">Name Surname</th>
+							<td class="text-left"style="padding:9px">{{ reservation.user.first_name }} {{ reservation.user.last_name }}</td>
+						</tr>
+						<tr>
+							<th class="text-left"style="padding:9px">Phone</th>
+							<td class="text-left"style="padding:9px">{{ reservation.phone }}</td>
+						</tr>
+						<tr>
+							<th class="text-left"style="padding:9px">Address</th>
+							<td class="text-left"style="padding:9px">{{ reservation.address}}</td>
+						</tr>
+						<tr>
+							<th class="text-left"style="padding:9px">City</th>
+							<td class="text-left"style="padding:9px">{{ reservation.city }}</td>
+						</tr>
+						<tr>
+							<th class="text-left"style="padding:9px">Country</th>
+							<td class="text-left"style="padding:9px">{{ reservation.country }}</td>
+						</tr>
+						<tr>
+							<th class="text-left"style="padding:9px">Start Date</th>
+							<td class="text-left"style="padding:9px">{{ reservation.startdate }}</td>
+						</tr>
+						<tr>
+							<th class="text-left"style="padding:9px">Finish Date</th>
+							<td class="text-left"style="padding:9px">{{ reservation.finishdate }}</td>
+						</tr>
+						<tr>
+							<th class="text-left"style="padding:9px">Reservation Code</th>
+							<td class="text-left"style="padding:9px">{{ reservation.code }}</td>
+						</tr>
+						<tr>
+							<th class="text-left"style="padding:9px">Admin Note</th>
+							<td class="text-left"style="padding:9px">{{ reservation.adminnote }}</td>
+						</tr>
+						</thead>
+					</table>
+					<table class="table table-condensed">
+						<thead>
+						<tr class="cart_menu">
+
+							<th class="text-left">Image</th>
+							<th class="text-left">Hotel Name</th>
+							<th class="text-left">Total Day</th>
+							<th class="text-left">Price</th>
+							<th class="text-left">Status</th>
+							<th class="text-left">Created</th>
+
+						</tr>
+
+						{% for rs in reservationdetails %}
+							<tr>
+								<td class="text-left" style="padding:9px"><a href="/Hotel/{{rs.hotel.id}}/{{rs.hotel.slug}}"><img src="{{ rs.hotel.image.url }}" style="height:90px"></a></td>
+								<td class="text-left" style="padding-top:40px">{{ rs.hotel }}</td>
+								<td class="text-left" style="padding-top:40px">{{ rs.quantity }}</td>
+								<td class="text-left" style="padding-top:40px">{{ rs.price }}</td>
+								<td class="text-left" style="padding-top:40px">{{ rs.status }}</td>
+								<td class="text-left" style="padding-top:40px">{{ rs.create_at }}</td>
+							</tr>
+						{% endfor %}
+						</thead>
+						<tbody>
+						<tr>
+
+
+
+
+						</tr>
+						</tbody>
+					</table>
+
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+    <script src="js/jquery.js"></script>
+	<script src="js/price-range.js"></script>
+    <script src="js/jquery.scrollUp.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.prettyPhoto.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+{% endblock %}

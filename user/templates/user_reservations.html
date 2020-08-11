@@ -1,0 +1,80 @@
+{% extends "homebase.html" %}
+
+{% block title %} {{ user.userprofile.user_name }} Profile{% endblock %}
+{% block keywords %} {{ hotel.keywords }}{% endblock %}
+{% block description %} {{ hotel.description }} {% endblock %}
+
+{% block sidebar %}{% endblock %}
+
+{% block body %}{% endblock %}
+{% block content %}
+
+<body>
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-3">
+					{% include "user_panel.html" %}
+				</div>
+				<div class="col-sm-8">
+					<h2 class="title text-center">USER RESERVATIONS</h2>
+					{% if messages %}
+						{% for message in messages %}
+							<div class="alert alert-{{message.tags}}" role="alert">
+								{{message}}
+							</div>
+						{% endfor %}
+					{% endif %}
+					<table class="table table-condensed">
+						<thead>
+						<tr class="cart_menu">
+
+							<th class="text-left">Id</th>
+							<th class="text-left">First Name</th>
+							<th class="text-left">Last Name</th>
+							<th class="text-left">Hotel name</th>
+							<th class="text-left">Start Date</th>
+							<th class="text-left">Finish Date</th>
+							<th class="text-left">Status</th>
+							<th class="text-left">Detail</th>
+
+						</tr>
+						{% for rs in reservations %}
+							<tr>
+
+								<td class="text-left" style="padding:9px">{{ rs.id }}</td>
+								<td class="text-left" style="padding:9px">{{ rs.first_name }}</td>
+								<td class="text-left" style="padding:9px">{{ rs.last_name }}</td>
+								<td class="text-left" style="padding:9px">{{ rs.hotel }}</td>
+								<td class="text-left" style="padding:9px">{{ rs.startdate }}</td>
+								<td class="text-left" style="padding:9px">{{ rs.finishdate }}</td>
+								<td class="text-left" style="padding:9px">{{ rs.status }}</td>
+								<td class="text-left" style="padding:9px"><a class="btn btn-primary" href="/user/reservationdetail/{{rs.id}}">Detay</a></td>
+							</tr>
+						{% endfor %}
+						</thead>
+						<tbody>
+						<tr>
+
+
+
+
+						</tr>
+						</tbody>
+					</table>
+
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+    <script src="js/jquery.js"></script>
+	<script src="js/price-range.js"></script>
+    <script src="js/jquery.scrollUp.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.prettyPhoto.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+{% endblock %}
