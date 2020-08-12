@@ -95,6 +95,7 @@ def signup_view(request):
                }
     return render(request,'signup.html',context)
 
+'''
 @login_required(login_url='/login')
 def reservationhotel(request,id,slug):
     category=Category.objects.all()
@@ -134,14 +135,14 @@ def reservationhotel(request,id,slug):
             detail.amount=hotel.oda_sayisi
             detail.save()
 
-            #hotel.oda_sayisi -= 1
-            #hotel.save()
+            hotel.oda_sayisi -= 1
+            hotel.save()
 
             messages.success(request, "Your reservation has been completed. Thank you")
             return render(request,'Reservation_Completed.html',{'reservationcode':reservationcode,'category':category,'hotel':hotel})
         else:
             messages.warning(request,form.errors)
-            return HttpResponseRedirect("/")
+            return HttpResponseRedirect("/reservation/ReservationHotel")
 
     form=ReservationForm()
     profile =UserProfile.objects.get(user_id=current_user.id)
@@ -153,3 +154,4 @@ def reservationhotel(request,id,slug):
                'hotel':hotel,
                }
     return render(request,'Reservation_Form.html',context)
+'''

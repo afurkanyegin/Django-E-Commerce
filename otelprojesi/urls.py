@@ -31,8 +31,8 @@ urlpatterns = [
 
     path('category/<int:id>/<slug:slug>/', views.category_detail, name='category_detail'),
     path('Hotel/<int:id>/<slug:slug>/', views.hotel_detail, name='hotel_detail'),
-    path('reservation/<int:id>/<slug:slug>/', views.reservationhotel, name='Reservation_Form'),
-    path('reservation/Res_Complete', views.reservationhotel, name='Reservation_Complete'),
+    #path('reservation/<int:id>/<slug:slug>/', views.reservationhotel, name='Reservation_Form'),
+    #path('reservation/Res_Complete', views.reservationhotel, name='Reservation_Complete'),
     path('logout/', views.logout_view, name='logout_view'),
     path('login/', views.login_view, name='login_view'),
     path('signup/', views.signup_view, name='signup_view'),
