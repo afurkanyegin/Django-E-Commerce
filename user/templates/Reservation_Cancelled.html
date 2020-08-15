@@ -1,0 +1,70 @@
+{% extends "homebase.html" %}
+
+{% block title %} Reservation Cancelled{% endblock %}
+{% block keywords %} {{ hotel.keywords }}{% endblock %}
+{% block description %} {{ hotel.description }} {% endblock %}
+
+{% block sidebar %}{% endblock %}
+
+{% block body %}{% endblock %}
+{% block content %}
+
+<body>
+    <section id="cart_items">
+		<div class="container">
+			<div class="breadcrumbs">
+				<ol class="breadcrumb">
+				  <li><a href="#">Home</a></li>
+				  <li class="active">Reservation Form</li>
+				</ol>
+			</div><!--/breadcrums-->
+
+			<div class="step-one">
+				<h2 class="heading">RESERVATION CANCELLATION </h2>
+			</div>
+
+			<div class="shopper-informations">
+
+				<div class="row">
+					{% if messages %}
+					{% for message in messages %}
+						<div class="alert alert-{{message.tags}}" role="alert">
+							{{message}}
+						</div>
+					{% endfor %}
+					{% endif %}
+
+					<form action="" method="POST">
+
+						{% csrf_token %}
+						<p>User Information</p>
+
+						<h6>Hotel :</h6>
+						<input type="text" name="hotel" class="input" value="{{hotel.title}}" readonly>
+						<h6>Name :</h6>
+						<input type="text" name="first_name" class="input" value="{{user.first_name}}">
+						<h6>Surname :</h6>
+						<input type="text" name="last_name" class="input" value="{{user.last_name}}">
+						<h6>Phone :</h6>
+						<input type="text" name="phone" class="input" value="{{profile.phone}}">
+						<h6>Address :</h6>
+						<input type="text" name="address" class="input" value="{{profile.address}}">
+						<h6>City :</h6>
+						<input type="text" name="city" class="input" value="{{profile.city}}">
+						<h6>Country :</h6>
+						<input type="text" name="country" class="input" value="{{profile.country}}"><br>
+						<p>Reservation Dates</p>
+						<h6>Reservat,ion Code :</h6>
+						<input type="text" value="{{reservation.id}}">
+
+						<button type="submit" class="btn btn-primary">Complete Reservation</button>
+
+					</form></div>
+				</div>
+
+			</div>
+	</section> <!--/#cart_items-->
+
+</body>
+
+{% endblock %}

@@ -64,6 +64,7 @@
 							<th class="text-left"style="padding:9px">Admin Note</th>
 							<td class="text-left"style="padding:9px">{{ reservation.adminnote }}</td>
 						</tr>
+
 						</thead>
 					</table>
 					<table class="table table-condensed">
@@ -87,6 +88,9 @@
 								<td class="text-left" style="padding-top:40px">{{ rs.price }}</td>
 								<td class="text-left" style="padding-top:40px">{{ rs.status }}</td>
 								<td class="text-left" style="padding-top:40px">{{ rs.create_at }}</td>
+								<form>
+									<button type="submit" method="POST" style="padding:9px"><a class="btn btn-primary">Rezervasyonu İptal Et</a></button>
+								</form>
 							</tr>
 						{% endfor %}
 						</thead>

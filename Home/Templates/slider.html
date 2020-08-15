@@ -6,26 +6,29 @@
 					<div id="slider-carousel" class="carousel slide" data-ride="carousel">
 						<div class="carousel-inner">
 
-							<div class="item active">
-								<div class="col-sm-6">
-									<h2>Sitemize Hoş Geldiniz</h2>
-									<p>Size en uygun konaklama fırsatlarına ulaşın </p>
-									<button type="button" class="btn btn-default get">Otellere Gözat</button>
+							<div class="item active">,
+								{% for rs in sliderdatamain %}
+								<div class="col-sm-4">
+									<h1><span>E</span>-HOTEL</h1>
+									<h3>Size en uygun konaklama fırsatlarına ulaşın </h3>
+									<h2>{{ rs.title }}</h2>
+									<a  href="/Hotel/{{rs.id}}/{{rs.slug}}" class="btn btn-default get">Otel Sayfasına Git</a>
 								</div>
-								<div class="col-sm-6">
-									<img src="{% static 'images/home/tsr0.jpg' %}" class="girl img-responsive"  alt="" style="height:400px" />
+								<div class="col-sm-8">
+									<img src="{{ rs.image.url }}" alt="" style="height:400px" />
 								</div>
+								{% endfor %}
 							</div>
 
                             {% for rs in sliderdata %}
 							<div class="item">
-								<div class="col-sm-6">
-									<h1><span>E</span>-SHOPPER</h1>
+								<div class="col-sm-4">
+									<h1><span>E</span>-HOTEL</h1>
 									<h2>{{ rs.title }}</h2>
 									<p>{{ rs.description}} </p>
 									<a  href="/Hotel/{{rs.id}}/{{rs.slug}}" class="btn btn-default get">Otel Sayfasına Git</a>
 								</div>
-								<div class="col-sm-6">
+								<div class="col-sm-8">
 									<img src="{{ rs.image.url }}"  alt="" style="height:400px"/>
 								</div>
 							</div>

@@ -4,7 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
 # Create your views here.
-from Hotel.models import CommentForm, Comment
+from Hotel.models import CommentForm, Comment, Hotel, Category
 
 
 def index(request):

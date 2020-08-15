@@ -25,6 +25,7 @@ urlpatterns = [
     path('hotel/', include('Hotel.urls')),
     path('user/', include('user.urls')),
     path('reservation/', include('reservation.urls')),
+    #path('cancellation/', include('Cancel.urls')),
     path('home/', include('Home.urls')),
     path('admin/', admin.site.urls),
     path('ckeditor/', include('ckeditor_uploader.urls')),

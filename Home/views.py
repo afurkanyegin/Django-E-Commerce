@@ -15,16 +15,20 @@ from reservation.models import ReservationForm, Reservation, ReservationHotel
 
 def index(request):
     setting = Setting.objects.get(pk=1)
-    sliderdata = Hotel.objects.all()[:4]
+    sliderdata = Hotel.objects.all()[:9]
+    sliderdatamain =Hotel.objects.filter(gunluk_fiyat=899)
     category=Category.objects.all()
-    featureshotel = Hotel.objects.all().order_by('-id')[:6]
+    tumoteller = Hotel.objects.order_by('bulundugu_il')
+    featureshotel = Hotel.objects.all().order_by('-id')[:9]
     recommendedhotels = Hotel.objects.all().order_by('?')[:3]
     context = {'setting': setting,
                'category':category,
                'page':'Home',
                'sliderdata': sliderdata,
+               'sliderdatamain': sliderdatamain,
                'featureshotel': featureshotel,
-               'recommendedhotels': recommendedhotels, }
+               'recommendedhotels': recommendedhotels,
+               'tumoteller':tumoteller}
 
     return render(request, 'index.html', context)
 
@@ -33,11 +37,13 @@ def hotel_detail(request, id, slug):
     category = Category.objects.all()
     hotel = Hotel.objects.get(pk=id)
     images=Images.objects.filter(hotel_id=id)
+    recommendedhotels = Hotel.objects.all().order_by('?')[:3]
     comments=Comment.objects.filter(hotel_id=id,status='True')
     context = {'hotel':hotel,
                'category':category,
                'images':images,
                'comments':comments,
+               'recommendedhotels': recommendedhotels,
                }
     return render(request,'hotel_detail.html',context)
 

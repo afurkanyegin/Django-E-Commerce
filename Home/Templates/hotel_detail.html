@@ -31,29 +31,6 @@
 
 							</div><!--/category-products-->
 
-						<div class="brands_products"><!--brands_products-->
-							<h2>Brands</h2>
-							<div class="brands-name">
-								<ul class="nav nav-pills nav-stacked">
-									<li><a href="#"> <span class="pull-right">(50)</span>Acne</a></li>
-									<li><a href="#"> <span class="pull-right">(56)</span>Grüne Erde</a></li>
-									<li><a href="#"> <span class="pull-right">(27)</span>Albiro</a></li>
-									<li><a href="#"> <span class="pull-right">(32)</span>Ronhill</a></li>
-									<li><a href="#"> <span class="pull-right">(5)</span>Oddmolly</a></li>
-									<li><a href="#"> <span class="pull-right">(9)</span>Boudestijn</a></li>
-									<li><a href="#"> <span class="pull-right">(4)</span>Rösch creative culture</a></li>
-								</ul>
-							</div>
-						</div><!--/brands_products-->
-
-						<div class="price-range"><!--price-range-->
-							<h2>Price Range</h2>
-							<div class="well text-center">
-								 <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]" id="sl2" ><br />
-								 <b class="pull-left">$ 0</b> <b class="pull-right">$ 600</b>
-							</div>
-						</div><!--/price-range-->
-
 
 					</div>
 				</div>
@@ -97,15 +74,15 @@
 							<div class="product-information"><!--/product-information-->
 								<img src="images/product-details/new.jpg" class="newarrival" alt="" />
 								<h2>{{ hotel.title }}</h2>
-								<p>Web ID: 1089772</p>
 								<img src="images/product-details/rating.png" alt="" />
 								<span>
 									<span>{{ hotel.gunluk_fiyat}} TL</span>
 
 								</span>
-								<p><b>Availability:</b> In Stock</p>
-								<p><b>Brand:</b> E-SHOPPER</p>
-								<p><b>Tanıtım:</b> {{ hotel.description }}</p>
+								<p><b>Available Room:</b> {{hotel.oda_sayisi}}</p>
+								<p><b>Bulunduğu İlçe:</b> {{hotel.bulundugu_ilce}}</p>
+								<p><b>Bulunduğu İl:</b> {{hotel.bulundugu_il}}</p>
+								<p><b>Description:</b> {{ hotel.description }}</p>
 								<span>
 								<label>Gün Sayısı:</label>
 									<input type="number" min="0" max="{{ hotel.oda_sayisi }}" value="3" />
@@ -129,11 +106,6 @@
 
 							<div class="tab-pane fade active in" id="reviews" >
 								<div class="col-sm-12">
-									<ul>
-										<li><a href=""><i class="fa fa-user"></i>EUGEN</a></li>
-										<li><a href=""><i class="fa fa-clock-o"></i>12:41 PM</a></li>
-										<li><a href=""><i class="fa fa-calendar-o"></i>06 AGUSTOS 2014</a></li>
-									</ul>
 									<p>{{ hotel.detail | safe }}</p>
 									<p><b>Write Your Review</b></p>
 
@@ -160,80 +132,38 @@
 						<div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
 							<div class="carousel-inner">
 								<div class="item active">
+									{% for rs in recommendedhotels %}
 									<div class="col-sm-4">
 										<div class="product-image-wrapper">
 											<div class="single-products">
 												<div class="productinfo text-center">
-													<img src="images/home/recommend1.jpg" alt="" />
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+													<img src="{{rs.image.url}}" alt="" style="height:350px" />
+													<h2>{{rs.gunluk_fiyat}}TL</h2>
+													<p>{{rs.title}}</p>
+													<a href="/Hotel/{{rs.id}}/{{rs.slug}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Rezervasyon Yap</a>
 												</div>
+
 											</div>
 										</div>
 									</div>
-									<div class="col-sm-4">
-										<div class="product-image-wrapper">
-											<div class="single-products">
-												<div class="productinfo text-center">
-													<img src="images/home/recommend2.jpg" alt="" />
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="col-sm-4">
-										<div class="product-image-wrapper">
-											<div class="single-products">
-												<div class="productinfo text-center">
-													<img src="images/home/recommend3.jpg" alt="" />
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-												</div>
-											</div>
-										</div>
-									</div>
+									{% endfor %}
 								</div>
 								<div class="item">
+									{% for rs in recommendedhotels %}
 									<div class="col-sm-4">
 										<div class="product-image-wrapper">
 											<div class="single-products">
 												<div class="productinfo text-center">
-													<img src="images/home/recommend1.jpg" alt="" />
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+													<img src="{{rs.image.url}}" alt="" style="height:350px" />
+													<h2>{{rs.gunluk_fiyat}}TL</h2>
+													<p>{{rs.title}}</p>
+													<a href="/Hotel/{{rs.id}}/{{rs.slug}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Rezervasyon Yap</a>
 												</div>
+
 											</div>
 										</div>
 									</div>
-									<div class="col-sm-4">
-										<div class="product-image-wrapper">
-											<div class="single-products">
-												<div class="productinfo text-center">
-													<img src="images/home/recommend2.jpg" alt="" />
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="col-sm-4">
-										<div class="product-image-wrapper">
-											<div class="single-products">
-												<div class="productinfo text-center">
-													<img src="images/home/recommend3.jpg" alt="" />
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-												</div>
-											</div>
-										</div>
-									</div>
+									{% endfor %}
 								</div>
 							</div>
 							 <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
