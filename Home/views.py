@@ -7,8 +7,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 # Create your views here.
 from django.utils.crypto import get_random_string
 
-from Home.forms import SignUpForm
-from Home.models import Setting, UserProfile
+from Home.forms import SignUpForm, SearchForm
+from Home.models import Setting, UserProfile, ContactFormu, ContactFormMessage
 from Hotel.models import Hotel, Category, Images, Comment
 from reservation.models import ReservationForm, Reservation, ReservationHotel
 
@@ -100,6 +100,45 @@ def signup_view(request):
                'form':form,
                }
     return render(request,'signup.html',context)
+
+
+def hotel_search(request):
+    if request.method == 'POST':
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            category=Category.objects.all()
+            query = form.cleaned_data['query']
+            hotels = Hotel.objects.filter(title__icontains=query)
+            context = {'hotels':hotels,
+                       'category':category,
+                       }
+            return render(request,'hotels_search.html',context)
+        return HttpResponseRedirect('gg2')
+    return HttpResponseRedirect('gg')
+
+
+def iletisim(request):
+    if request.method =='POST':
+        form = ContactFormu(request.POST)
+        if form.is_valid():
+            data=ContactFormMessage()
+            data.name=form.cleaned_data['name']
+            data.email=form.cleaned_data['email']
+            data.subject=form.cleaned_data['subject']
+            data.message=form.cleaned_data['message']
+            data.ip = request.META.get('REMOTE_ADDR')
+            data.save()
+            messages.success(request,"Message sent succesfully!")
+            return HttpResponseRedirect('/contact')
+    setting = Setting.objects.get(pk=1)
+    form = ContactFormu()
+    context ={'setting':setting,'form':form}
+    return render(request, 'contact.html',context)
+
+
+
+
+
 
 '''
 @login_required(login_url='/login')

@@ -4,6 +4,9 @@
 {% block keywords %} {{ categorydata.keywords }}{% endblock %}
 {% block description %} {{ categorydata.description }} {% endblock %}
 
+{% block head %}
+    <link rel='shortcut icon' type='image/x-icon' href='{{setting.icon.url}}'/>
+{% endblock %}
 {% block sidebar %}{% endblock %}
 
 {% block body %}{% endblock %}
@@ -12,6 +15,12 @@
 <body>
 	<section>
 		<div class="container">
+			<div class="breadcrumbs">
+				<ol class="breadcrumb">
+				  <li><a href="/">Home</a></li>
+				  <li class="active">{{categorydata.title}}</li>
+				</ol>
+			</div><!--/breadcrums-->
 			<div class="row">
 				<div class="col-sm-3">
 					<div class="left-sidebar">
@@ -29,17 +38,6 @@
 							{% endrecursetree %}
 						</div><!--/category-products-->
 
-						<div class="brands_products"><!--brands_products-->
-							<h2>Brands</h2>
-							<div class="brands-name">
-								{% for rs in hotels %}
-								<ul class="nav nav-pills nav-stacked">
-									<li><a href="#"> <span class="pull-right"></span>{{rs.bulundugu_il}}</a></li>
-								</ul>
-								{% endfor %}
-							</div>
-						</div><!--/brands_products-->
-
 
 					</div>
 				</div>
@@ -47,8 +45,8 @@
 				<div class="col-sm-9 padding-right">
 					<div class="features_items"><!--features_items-->
 
-							<div class="panel panel-default">
-								<h2 class="title text-center">{{ node.id  }}</h2>
+							<div class="panel">
+								<h2 class="title text-center">{{ categorydata.title }}</h2>
 							</div>
 
                         {% for rs in hotels %}

@@ -5,7 +5,8 @@ from Home.models import Setting, UserProfile, ContactFormMessage
 
 
 class ContactFormMessageAdmin(admin.ModelAdmin):
-    list_display = ['name','email','subject','status']
+    list_display = ['name','email','subject','message','status']
+    readonly_fields = ['name','email','subject','message','ip']
     list_filter = ['status']
 
 class UserProfileAdmin(admin.ModelAdmin):

@@ -12,6 +12,13 @@
 <body>
 	<section>
 		<div class="container">
+			<div class="breadcrumbs">
+				<ol class="breadcrumb">
+				  <li><a href="/">Home</a></li>
+				  <li class="active">{{ reservation.user.first_name }}'s Reservation Details</li>
+				</ol>
+			</div><!--/breadcrums-->
+
 			<div class="row">
 				<div class="col-sm-3">
 					{% include "user_panel.html" %}

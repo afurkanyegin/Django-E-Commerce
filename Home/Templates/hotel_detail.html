@@ -12,6 +12,14 @@
 <body>
 	<section>
 		<div class="container">
+			<div class="breadcrumbs">
+				<ol class="breadcrumb">
+				 	 <li><a href="/">Home</a></li>
+					<li><a href="/category/{{hotel.category.id}}/{{hotel.category.slug}}">{{hotel.category}}</a></li>
+				  	<li class="active">{{ hotel.title }}</li>
+				</ol>
+			</div><!--/breadcrums-->
+
 			<div class="row">
 				<div class="col-sm-2">
 					<div class="left-sidebar">
@@ -84,8 +92,7 @@
 								<p><b>Bulunduğu İl:</b> {{hotel.bulundugu_il}}</p>
 								<p><b>Description:</b> {{ hotel.description }}</p>
 								<span>
-								<label>Gün Sayısı:</label>
-									<input type="number" min="0" max="{{ hotel.oda_sayisi }}" value="3" />
+									<br>
 									<a href="/reservation/{{user.id}}/{{hotel.id}}/{{hotel.slug}}" class="btn btn-fefault cart">Rezervasyon Yap</a>
 								</span>
 								<a href=""><img src="images/product-details/share.png" class="share img-responsive"  alt="" /></a>

@@ -1,0 +1,49 @@
+{% extends "homebase.html" %}
+
+{% block title %} {{ hotel.title }} {% endblock %}
+{% block keywords %} {{ hotel.keywords }}{% endblock %}
+{% block description %} {{ hotel.description }} {% endblock %}
+
+{% block sidebar %}{% endblock %}
+
+{% block body %}{% endblock %}
+{% block content %}
+<body>
+	<section>
+		<div class="container">
+			<div class="breadcrumbs">
+				<ol class="breadcrumb">
+				 	 <li><a href="/">Home</a></li>
+				  	 <li class="active">Hotel Search Results</li>
+				</ol>
+			</div><!--/breadcrums-->
+
+			<div class="row">
+                <table class="table">
+					<thead>
+						<tr class="cart_menu">
+							<th>Hotel Image</th>
+							<th>Hotel Name</th>
+							<th>Category</th>
+							<th>Price</th>
+						</tr>
+					</thead>
+					<tbody>
+                    {% for rs in hotels %}
+						<tr>
+                            <td><a href="/Hotel/{{rs.id}}/{{rs.slug}}"><img src="{{rs.image.url}}" style="height:250px;width:350px"> </a></td>
+
+                            <td><h4><a href="/Hotel/{{rs.id}}/{{rs.slug}}">{{rs.title}} </a></h4></td>
+
+                            <td><h4><a href="/category/{{rs.category.id}}/{{rs.category.slug}}">{{rs.category}}</a></h4></td>
+
+                            <td><h4>{{rs.gunluk_fiyat}} TL</h4> </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+			</div>
+		</div>
+	</section>
+</body>
+{% endblock %}

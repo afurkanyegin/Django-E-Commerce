@@ -10,31 +10,31 @@
 {% block content %}
 
 <body>
-	<section>
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-3">
-					{% include "user_panel.html" %}
+<section>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-3">
+				{% include "user_panel.html" %}
+			</div>
+			<div class="col-sm-9">
+				<div class="signup-form">
+					<form action="" method="POST">
+						{% csrf_token %}
+						<h2 class="title text-center">UPDATE USER INFORMATION</h2>
+						<div class="media" style="padding:20px">
+							<img src="{{user.userprofile.image.url}}" style="height:175px;border-radius:45px">
+						</div>
+
+						{{user_form.as_p}}
+						{{profile_form.as_p}}
+
+						<button type="submit" class="btn btn-primary">Update</button>
+					</form>
 				</div>
-				<div class="col-sm-9">
-								<div class="shopper-info">
-									<form action="" method="POST">
-										{% csrf_token %}
-										<h2 class="title text-center">UPDATE USER INFORMATION</h2>
-										<div class="media" style="padding:20px">
-											<img src="{{user.userprofile.image.url}}" style="height:175px;border-radius:45px">
-										</div>
-										{{user_form.as_p}}
-										{{profile_form.as_p}}
-
-										<button type="submit" class="btn btn-primary">Update</button>
-									</form>
-								</div>
-							</div>
-
 			</div>
 		</div>
-	</section>
+	</div>
+</section>
 
 </body>
 

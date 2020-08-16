@@ -1,8 +1,9 @@
+from ckeditor_uploader.fields import RichTextUploadingField
 from django.contrib.auth.models import User
 from django.db import models
 
 # Create your models here.
-from django.forms import ModelForm, TextInput
+from django.forms import ModelForm, TextInput, Textarea
 from django.utils.safestring import mark_safe
 
 from Hotel.models import Hotel
@@ -89,6 +90,6 @@ class ContactFormu(ModelForm):
             'name':    TextInput(attrs={'class':'input','placeholder':'Name & Surname'}),
             'subject': TextInput(attrs={'class':'input','placeholder':'Subject'}),
             'email':   TextInput(attrs={'class':'input','placeholder':'Email Address'}),
-            'message': TextInput(attrs={'class':'input','placeholder':'Your Message','rows':'5'}),
+            'message': Textarea(attrs={'class':'input','placeholder':'Your Message','rows':'5'}),
         }
 

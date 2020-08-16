@@ -4,6 +4,9 @@
 {% block keywords %} {{ hotel.keywords }}{% endblock %}
 {% block description %} {{ hotel.description }} {% endblock %}
 
+{% block head %}
+    <link rel='shortcut icon' type='image/x-icon' href='{{setting.icon.url}}'/>
+{% endblock %}
 {% block sidebar %}{% endblock %}
 
 {% block body %}{% endblock %}
@@ -12,6 +15,12 @@
 <body>
 	<section>
 		<div class="container">
+			<div class="breadcrumbs">
+				<ol class="breadcrumb">
+				  <li><a href="/">Home</a></li>
+				  <li class="active">{{ user.first_name }}'s Reservations</li>
+				</ol>
+			</div><!--/breadcrums-->
 			<div class="row">
 				<div class="col-sm-3">
 					{% include "user_panel.html" %}

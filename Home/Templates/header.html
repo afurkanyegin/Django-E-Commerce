@@ -6,19 +6,17 @@
 					<div class="col-sm-6">
 						<div class="contactinfo">
 							<ul class="nav nav-pills">
-								<li><a href="#"><i class="fa fa-phone"></i> +2 95 01 88 821</a></li>
-								<li><a href="#"><i class="fa fa-envelope"></i> info@domain.com</a></li>
+								<li><a href="#"><i class="fa fa-phone"></i> +90 167 738 93</a></li>
+								<li><a href="#"><i class="fa fa-envelope"></i> info@ehotel.com</a></li>
 							</ul>
 						</div>
 					</div>
 					<div class="col-sm-6">
 						<div class="social-icons pull-right">
 							<ul class="nav navbar-nav">
-								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-								<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-								<li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-								<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+								<li><a href="https://tr-tr.facebook.com/otelzcom"><i class="fa fa-facebook"></i></a></li>
+								<li><a href="https://twitter.com/otelzcom?lang=en"><i class="fa fa-twitter"></i></a></li>
+								<li><a href="https://www.instagram.com/otelzcom/?hl=en"><i class="fa fa-instagram"></i></a></li>
 							</ul>
 						</div>
 					</div>
@@ -67,30 +65,29 @@
 						<div class="mainmenu pull-left">
 							<ul class="nav navbar-nav collapse navbar-collapse">
 								<li><a href="/" class="active">Home</a></li>
-								<li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
-                                    <ul role="menu" class="sub-menu">
-                                        <li><a href="shop.html">Products</a></li>
-										<li><a href="product-details.html">Product Details</a></li>
-										<li><a href="checkout.html">Checkout</a></li>
-										<li><a href="cart.html">Cart</a></li>
-										<li><a href="login.html">Login</a></li>
+								<li class="dropdown"><a href="#">Hotels<i class="fa fa-angle-down"></i></a>
+
+									<ul role="menu" class="sub-menu">
+										{% for rs in category %}
+                                        <li><a href="/category/{{ rs.id }}/{{ rs.slug }}">{{ rs.title }}</a></li>
+										{% endfor %}
                                     </ul>
+
                                 </li>
-								<li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
-                                    <ul role="menu" class="sub-menu">
-                                        <li><a href="blog.html">Blog List</a></li>
-										<li><a href="blog-single.html">Blog Single</a></li>
-                                    </ul>
-                                </li>
-								<li><a href="404.html">404</a></li>
-								<li><a href="contact-us.html">Contact</a></li>
+								<li><a href="/contact/">Contact</a></li>
 							</ul>
 						</div>
 					</div>
 					<div class="col-sm-3">
-						<div class="search_box pull-right">
-							<input type="text" placeholder="Search"/>
+						<div class="search_box pull-left">
+							<form action="/search/" method="POST">
+								{% csrf_token %}
+								<input name="query" class="input search-input" type="text" placeholder="Search Hotels">
+								<button class="search-btn"><i class="fa fa-search"></i> </button>
+							</form>
+
 						</div>
+
 					</div>
 				</div>
 			</div>
