@@ -4,6 +4,9 @@
 {% block keywords %} {{ hotel.keywords }}{% endblock %}
 {% block description %} {{ hotel.description }} {% endblock %}
 
+{% block head %}
+    <link rel='shortcut icon' type='image/x-icon' href='{{setting.icon.url}}'/>
+{% endblock %}
 {% block sidebar %}{% endblock %}
 
 {% block body %}{% endblock %}
@@ -85,51 +88,7 @@
 					</div>
 				</div>
 
-			<div class="review-payment">
-				<h2>Review & Payment</h2>
-			</div>
-
-			<div class="table-responsive cart_info">
-				<table class="table table-condensed">
-					<thead>
-						<tr class="cart_menu">
-							<td class="image">Hotel Image</td>
-							<td class="description">Hotel Name</td>
-							<td class="price">Daily Price</td>
-							<td class="quantity">Day Count</td>
-							<td class="total">Total</td>
-							<td></td>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td class="cart_product">
-								<a href=""><img src="{{hotel.image.url}}" style="height:150px;width:300px;padding:10px" alt=""></a>
-							</td>
-							<td class="cart_description">
-								<h4><a href="">{{ hotel.title }}</a></h4>
-								<p>{{ hotel.category}}</p>
-							</td>
-							<td class="cart_price">
-								<p>{{ hotel.gunluk_fiyat}} TL</p>
-							</td>
-							<td class="cart_quantity">
-								<div class="cart_quantity_button">
-									<a class="cart_quantity_up" href=""> + </a>
-									<input class="cart_quantity_input" type="text" name="quantity" value="{{gunsayisi}}" autocomplete="off" size="2">
-									<a class="cart_quantity_down" href=""> - </a>
-								</div>
-							</td>
-							<td class="cart_total">
-								<p class="cart_total_price">{{ total}} TL</p>
-							</td>
-							<td class="cart_delete">
-								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
+				<br>
 		</div>
 	</section> <!--/#cart_items-->
 

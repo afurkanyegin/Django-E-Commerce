@@ -9,7 +9,8 @@ urlpatterns = [
     path('password/', views.change_password, name='change_password'),
     path('reservations/', views.reservations, name='reservations'),
     path('reservationdetail/<int:id>', views.reservationdetail, name='reservationdetail'),
-    path('reservationcancel/<int:user_id>/<int:id>/<slug:slug>', views.cancellationhotel, name='Cancellation_Form'),
+    #path('reservationcancel/<int:user_id>/<int:id>/<slug:slug>', views.cancellationhotel, name='Cancellation_Form'),
+    path('cancel/', views.cancellation, name='cancel'),
 ]
     # ex: /polls/5/
     #path('<int:question_id>/', views.detail, name='detail'),
