@@ -18,7 +18,7 @@ def addcomment(request,id):
         if form.is_valid():
             current_user = request.user
 
-            data =Comment()
+            data = Comment()
             data.user_id=current_user.id
             data.product_id=id
             data.subject = form.cleaned_data['subject']

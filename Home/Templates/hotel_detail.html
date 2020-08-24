@@ -56,7 +56,7 @@
 								    <div class="carousel-inner">
 
 										<div class="item active">
-										  <a href=""><img src="{{hotel.image.url}}" style="height:350px" alt=""></a>
+										  <a href=""><img src="{{hotel.image.url}}" style="height:370px" alt=""></a>
 										</div>
 										{% for rs in images %}
 										<div class="item">
@@ -80,7 +80,7 @@
 						<div class="col-sm-5">
 							<div class="product-information"><!--/product-information-->
 								<img src="images/product-details/new.jpg" class="newarrival" alt="" />
-								<h2>{{ hotel.title }}</h2>
+								<h3>{{ hotel.title }}</h3>
 								<img src="images/product-details/rating.png" alt="" />
 								<span>
 									<span>{{ hotel.gunluk_fiyat}} TL</span>
@@ -90,10 +90,9 @@
 								<p><b>City:</b> {{hotel.bulundugu_ilce}} / {{hotel.bulundugu_il}}</p>
 								<p><b>Description:</b> {{ hotel.description }}</p>
 								<span>
-									<br>
 									<a href="/reservation/{{user.id}}/{{hotel.id}}/{{hotel.slug}}" class="btn btn-fefault cart">Rezervasyon Yap</a>
 								</span>
-								<a href=""><img src="images/product-details/share.png" class="share img-responsive"  alt="" /></a>
+
 							</div><!--/product-information-->
 						</div>
 					</div><!--/product-details-->
@@ -101,7 +100,7 @@
 					<div class="category-tab shop-details-tab"><!--category-tab-->
 						<div class="col-sm-12">
 							<ul class="nav nav-tabs">
-								<li class="active"><a href="#reviews" data-toggle="tab">DETAYLAR</a></li>
+								<li class="active"><a href="#reviews" data-toggle="tab">DETAILS</a></li>
 							</ul>
 						</div>
 						<div class="tab-content">

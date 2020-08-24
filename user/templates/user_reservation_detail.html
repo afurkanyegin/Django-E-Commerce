@@ -80,7 +80,6 @@
 
 							<th class="text-left">Image</th>
 							<th class="text-left">Hotel Name</th>
-							<th class="text-left">Total Day</th>
 							<th class="text-left">Price</th>
 							<th class="text-left">Status</th>
 							<th class="text-left">Created</th>
@@ -91,13 +90,9 @@
 							<tr>
 								<td class="text-left" style="padding:9px"><a href="/Hotel/{{rs.hotel.id}}/{{rs.hotel.slug}}"><img src="{{ rs.hotel.image.url }}" style="height:90px"></a></td>
 								<td class="text-left" style="padding-top:40px">{{ rs.hotel }}</td>
-								<td class="text-left" style="padding-top:40px">{{ rs.quantity }}</td>
 								<td class="text-left" style="padding-top:40px">{{ rs.price }}</td>
 								<td class="text-left" style="padding-top:40px">{{ rs.status }}</td>
 								<td class="text-left" style="padding-top:40px">{{ rs.create_at }}</td>
-								<form>
-									<td class="text-left" style="padding:9px"><a class="btn btn-primary" href="/user/cancel">Rezervasyonu İptal Et</a></td>
-								</form>
 							</tr>
 						{% endfor %}
 						</thead>

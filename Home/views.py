@@ -15,11 +15,11 @@ from reservation.models import ReservationForm, Reservation, ReservationHotel
 
 def index(request):
     setting = Setting.objects.get(pk=1)
-    sliderdata = Hotel.objects.all()[:9]
-    sliderdatamain =Hotel.objects.filter(gunluk_fiyat=899)
+    sliderdata = Hotel.objects.all().order_by('?')[:9]
+    sliderdatamain =Hotel.objects.filter(gunluk_fiyat=589)
     category=Category.objects.all()
     tumoteller = Hotel.objects.order_by('bulundugu_il')
-    featureshotel = Hotel.objects.all().order_by('-id')[:9]
+    featureshotel = Hotel.objects.all().order_by('?')[:9]
     recommendedhotels = Hotel.objects.all().order_by('?')[:3]
     context = {'setting': setting,
                'category':category,

@@ -6,16 +6,17 @@
 					<div id="slider-carousel" class="carousel slide" data-ride="carousel">
 						<div class="carousel-inner">
 
-							<div class="item active">,
+							<div class="item active">
 								{% for rs in sliderdatamain %}
 								<div class="col-sm-4">
 									<h1><span>E</span>-HOTEL</h1>
 									<h3>Size en uygun konaklama fırsatlarına ulaşın </h3>
+									<br><br>
 									<h2>{{ rs.title }}</h2>
 									<a  href="/Hotel/{{rs.id}}/{{rs.slug}}" class="btn btn-default get">Otel Sayfasına Git</a>
 								</div>
 								<div class="col-sm-8">
-									<img src="{{ rs.image.url }}" alt="" style="height:400px" />
+									<img src="{{ rs.image.url }}" alt="" style="height:400px;width:650px" />
 								</div>
 								{% endfor %}
 							</div>
@@ -29,7 +30,7 @@
 									<a  href="/Hotel/{{rs.id}}/{{rs.slug}}" class="btn btn-default get">Otel Sayfasına Git</a>
 								</div>
 								<div class="col-sm-8">
-									<img src="{{ rs.image.url }}"  alt="" style="height:400px"/>
+									<img src="{{ rs.image.url }}"  alt="" style="height:400px;width:650px"/>
 								</div>
 							</div>
                             {% endfor %}
