@@ -1,2 +1,2 @@
 # ozel2odev
-Python Django ile E-Ticaret Sitesi
+Python Django E-Ticaret Sitesi
